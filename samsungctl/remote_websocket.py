@@ -19,6 +19,10 @@ class RemoteWebsocket():
 
         """Make a new connection."""
         self.connection = websocket.WebSocket()
+        
+        if config["timeout"]:
+            self.connection.settimeout(config["timeout"])        
+        
         self.connection.connect(URL_FORMAT.format(config["host"], config["port"],
                                                   self._serialize_string(config["name"])))
 
